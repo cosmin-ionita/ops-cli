@@ -31,6 +31,8 @@ function install_terraform_helm_plugin {
 
 TERRAFORM_HELM_PLUGIN_VERSION='v0.6.0'
 
+echo "Installing prerequisites"
+
 brew update
 
 brew_install_if_not_present terraform

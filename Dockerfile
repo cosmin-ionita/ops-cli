@@ -5,6 +5,10 @@ RUN brew install python2
 
 RUN pip2 install -U virtualenv
 RUN virtualenv ops
+
+USER root
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+USER linuxbrew
 RUN source ops/bin/activate
 RUN pip2 install --upgrade https://github.com/adobe/ops-cli/releases/download/0.23/ops-0.23.tar.gz
 
