@@ -20,17 +20,6 @@ function brew_install_or_upgrade {
     fi
 }
 
-function install_terraform_helm_plugin {
-    plugin_version=$1
-    echo "Installing/upgrading the Terraform Helm plugin to $plugin_version"
-    wget https://github.com/terraform-providers/terraform-provider-helm/releases/download/${plugin_version}/terraform-provider-helm_${plugin_version}_darwin_amd64.tar.gz -O /tmp/terraform-provider-helm_${plugin_version}_darwin_amd64.tar.gz
-
-    tar -xvf /tmp/terraform-provider-helm_${plugin_version}_darwin_amd64.tar.gz -C /tmp/
-    cp /tmp/terraform-provider-helm_darwin_amd64/terraform-provider-helm ~/.terraform.d/plugins/terraform-provider-helm
-}
-
-TERRAFORM_HELM_PLUGIN_VERSION='v0.6.0'
-
 echo "Installing prerequisites"
 
 brew update
@@ -41,8 +30,6 @@ brew_install_or_upgrade aws-iam-authenticator
 brew_install_or_upgrade kubernetes-helm
 brew_install_or_upgrade kubectl
 brew_install_or_upgrade jq
-
-install_terraform_helm_plugin $TERRAFORM_HELM_PLUGIN_VERSION
 
 helm init --client-only
 helm repo update
