@@ -45,4 +45,7 @@
   register: response
   retries: 5
   delay: 5
-  
+  vars:
+    skip_reload: "no"
+  when:
+    skip_reload != "yes"
